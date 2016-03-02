@@ -1,7 +1,7 @@
 {
   "name": "s3-zip",
   "version": "0.0.1",
-  "description": "Download selected files from an Amazon S3 bucket as zip file.",
+  "description": "Download selected files from an Amazon S3 bucket as a zip file.",
   "main": "s3-zip.js",
   "scripts": {
     "test": "tap --cov test/test*.js"
