@@ -23,9 +23,9 @@ s3Zip.archive = function (opts, folder, files) {
 
 s3Zip.archiveStream = function (stream) {
   var archive = archiver('zip');
-  archive.on('error', function(err) {
-    console.log('archive error');
-    throw err;
+  archive.on('error', function (err) {
+    console.log('archive error', err);
+    return null;
   });
   stream
    .on('data', function (file) {
@@ -35,10 +35,11 @@ s3Zip.archiveStream = function (stream) {
       archive.append(file.data, { name: file.path });
     })
    .on('end', function () {
-      console.log('finalize archive');
+      console.log('end -> finalize');
       archive.finalize(function (err) {
         if (err) {
-          throw err;
+          console.log('finalize archive error', err);
+          return null;
         }
       });
     });

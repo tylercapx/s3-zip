@@ -28,6 +28,7 @@
     "s3-files": "0.0.2"
   },
   "devDependencies": {
+    "concat-stream": "^1.5.1",
     "tap": "^5.7.0"
   }
 }
