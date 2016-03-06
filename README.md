@@ -1,5 +1,8 @@
 # s3-zip
 
+[![npm version][npm-badge]][npm-url]
+
+
 Download selected files from an Amazon S3 bucket as a zip file.
 
 
@@ -40,3 +43,8 @@ s3Zip
 
 ```
 
+
+
+[aws-sdk-url]: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html
+[npm-badge]: https://badge.fury.io/js/s3-zip.svg
+[npm-url]: https://badge.fury.io/js/s3-zip
