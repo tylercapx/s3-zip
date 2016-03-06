@@ -3,11 +3,19 @@
 Download selected files from an Amazon S3 bucket as a zip file.
 
 
+
 ## Install
 
 ```
 npm install s3-zip
 ```
+
+
+## AWS Configuration
+
+Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using this plugin.
+
+
 
 ## Usage
 
