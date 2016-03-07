@@ -36,12 +36,7 @@ s3Zip.archiveStream = function (stream) {
     })
    .on('end', function () {
       console.log('end -> finalize');
-      archive.finalize(function (err) {
-        if (err) {
-          console.log('finalize archive error', err);
-          return null;
-        }
-      });
+      archive.finalize();
     });
 
   return archive;

@@ -44,6 +44,22 @@ s3Zip
 ```
 
 
+## Testing
+
+Tests are written in Node Tap, run them like this:
+
+```
+npm t
+```
+
+If you would like a more fancy report: 
+
+```
+npm test -- --cov --coverage-report=lcov
+```
+
+
+
 
 [aws-sdk-url]: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html
 [npm-badge]: https://badge.fury.io/js/s3-zip.svg
