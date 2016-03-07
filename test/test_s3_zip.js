@@ -51,7 +51,7 @@ t.test('test archiveStream and zip file', function (child) {
     yauzl.open(__dirname + '/test.zip', function(err, zip) {
       if (err) console.log('err', err);
         zip.on('entry', function(entry) {
-          console.log(entry);
+          // console.log(entry);
           child.same(entry.fileName, 'fixtures/file.txt');
           child.same(entry.compressedSize, 11);
           child.same(entry.uncompressedSize, 20);
