@@ -45,6 +45,9 @@ s3Zip
 
 ```
 
+Example of s3-zip in combination with [AWS Lambda](aws_lambda.md).
+
+
 
 ## Testing
 
