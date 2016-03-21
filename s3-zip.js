@@ -4,8 +4,6 @@ var archiver = require('archiver');
 
 module.exports = s3Zip = {};
 
-
-
 s3Zip.archive = function (opts, folder, files) {
   var self = this;
   var keyStream = s3Files
@@ -25,7 +23,7 @@ s3Zip.archiveStream = function (stream) {
   var archive = archiver('zip');
   archive.on('error', function (err) {
     console.log('archive error', err);
-    return null;
+    throw err;
   });
   stream
    .on('data', function (file) {

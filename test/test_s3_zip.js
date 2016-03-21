@@ -34,7 +34,7 @@ var file1 = '/fixtures/file.txt';
 var sinon = require('sinon');
 var proxyquire = require('proxyquire');
 var s3Stub = fileStream(file1);
-var s3Zip = proxyquire('../s3-zip.js', {
+s3Zip = proxyquire('../s3-zip.js', {
   's3-files': { 'createFileStream': sinon.stub().returns(s3Stub) }
 });
 
@@ -64,23 +64,21 @@ t.test('test archiveStream and zip file', function (child) {
   child.type(archive, 'object');
 });
 
-
-
-t.test('test archiveStream error', function (child) {
-  var s = fileStream(file1, true);
-  var a = s3Zip.archiveStream(s);
-  a.on('error', function (e) {
-    child.equal(e.message, 'finalize: archive already finalizing');
-    child.end();
-  });
-});
+// t.test('test archiveStream error', function (child) {
+//   var s = fileStream(file1, true);
+//   var a = s3Zip.archiveStream(s);
+//   a.on('error', function (e) {
+//     child.equal(e.message, 'finalize: archive already finalizing');
+//     child.end();
+//   });
+// });
 
 
 t.test('test archive', function (child) {
   var archive = s3Zip
-    .archive({ region: 'region', bucket: 'bucket'},
-     'folder',
-     [file1]
+    .archive({ region: 'region', bucket: 'bucket' },
+      'folder',
+      [file1]
     );
   child.type(archive, 'object');
   child.end();
