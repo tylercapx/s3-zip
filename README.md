@@ -57,10 +57,10 @@ Tests are written in Node Tap, run them like this:
 npm t
 ```
 
-If you would like a more fancy report: 
+If you would like a more fancy coverage report: 
 
 ```
-npm test -- --cov --coverage-report=lcov
+npm run coverage
 ```
 
 
@@ -73,4 +73,3 @@ npm test -- --cov --coverage-report=lcov
 [travis-url]: https://travis-ci.org/orangewise/s3-zip
 [coveralls-badge]: https://coveralls.io/repos/github/orangewise/s3-zip/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/orangewise/s3-zip?branch=master
-
