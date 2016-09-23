@@ -28,9 +28,9 @@ s3Zip.archiveStream = function (stream) {
   stream
    .on('data', function (file) {
       // console.log(file.data.toString());
-      if(file.path[file.path.length - 1] == '/'){
-        console.log('don\'t append to zip', file.path);
-        return;
+     if(file.path[file.path.length - 1] == '/'){
+       console.log('don\'t append to zip', file.path);
+       return;
      }
      console.log('append to zip', file.path);
      archive.append(file.data, { name: file.path });
