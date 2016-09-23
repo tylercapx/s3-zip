@@ -18,7 +18,7 @@ exports.handler = function (event, context) {
   var bucket = event.bucket;
   var folder = event.folder;
   var files = event.files;
-  var zipFileName = event.zip;
+  var zipFileName = event.zipFileName;
 
   // Create body stream
   try {
