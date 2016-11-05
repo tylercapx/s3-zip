@@ -25,15 +25,15 @@
   },
   "homepage": "https://github.com/orangewise/s3-zip#readme",
   "dependencies": {
-    "archiver": "^0.21.0",
-    "readable-stream": "2.0.5",
-    "s3-files": "0.0.11"
+    "archiver": "^1.2.0",
+   "readable-stream": "^2.1.5",
+    "s3-files": "0.0.14"
   },
   "devDependencies": {
-    "concat-stream": "^1.5.1",
-    "proxyquire": "^1.7.4",
-    "sinon": "^1.17.3",
-    "tap": "^5.7.0",
-    "yauzl": "^2.4.1"
+    "concat-stream": "^1.5.2",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.6",
+    "tap": "^8.0.0",
+    "yauzl": "^2.7.0"
   }
 }
