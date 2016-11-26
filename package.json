@@ -4,7 +4,7 @@
   "description": "Download selected files from an Amazon S3 bucket as a zip file.",
   "main": "s3-zip.js",
   "scripts": {
-    "test": "tap --cov test/test*.js",
+    "test": "standard && tap --cov test/test*.js",
     "coverage": "npm test -- --cov --coverage-report=lcov"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "concat-stream": "^1.5.2",
     "proxyquire": "^1.7.10",
     "sinon": "^1.17.6",
+    "standard": "^8.6.0",
     "tap": "^8.0.0",
     "yauzl": "^2.7.0"
   }

@@ -3,7 +3,7 @@
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
-
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 Download selected files from an Amazon S3 bucket as a zip file.
 
@@ -28,23 +28,23 @@ Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using thi
 
 ```javascript
 
-var fs = require('fs');
-var join = require('path').join;
-var s3Zip = require('s3-zip');
+var fs = require('fs')
+var join = require('path').join
+var s3Zip = require('s3-zip')
 
-var region = 'bucket-region';
-var bucket = 'name-of-s3-bucket';
-var folder = 'name-of-bucket-folder/';
-var file1 = 'Image A.png';
-var file2 = 'Image B.png';
-var file3 = 'Image C.png';
-var file4 = 'Image D.png';
+var region = 'bucket-region'
+var bucket = 'name-of-s3-bucket'
+var folder = 'name-of-bucket-folder/'
+var file1 = 'Image A.png'
+var file2 = 'Image B.png'
+var file3 = 'Image C.png'
+var file4 = 'Image D.png'
 
-var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'));
+var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
 
 s3Zip
   .archive({ region: region, bucket: bucket}, folder, [file1, file2, file3, file4])
-  .pipe(output);
+  .pipe(output)
 
 ```
 
@@ -56,41 +56,41 @@ Example of s3-zip in combination with [AWS Lambda](aws_lambda.md).
 ### Zip a whole bucket folder
 
 ```javascript
-var fs = require('fs');
-var join = require('path').join;
-var AWS = require('aws-sdk');
-var s3Zip = require('s3-zip');
-var XmlStream = require('xml-stream');
+var fs = require('fs')
+var join = require('path').join
+var AWS = require('aws-sdk')
+var s3Zip = require('s3-zip')
+var XmlStream = require('xml-stream')
 
-var region = 'bucket-region';
-var bucket = 'name-of-s3-bucket';
-var folder = 'name-of-bucket-folder/';
-var s3 = new AWS.S3({ region: region });
+var region = 'bucket-region'
+var bucket = 'name-of-s3-bucket'
+var folder = 'name-of-bucket-folder/'
+var s3 = new AWS.S3({ region: region })
 var params = {
   Bucket: bucket,
   Prefix: folder
-};
+}
 
-var filesArray = [];
-var files = s3.listObjects(params).createReadStream();
-var xml = new XmlStream(files);
-xml.collect('Key');
+var filesArray = []
+var files = s3.listObjects(params).createReadStream()
+var xml = new XmlStream(files)
+xml.collect('Key')
 xml.on('endElement: Key', function(item) {
-  filesArray.push(item['$text'].substr(folder.length));
-});
+  filesArray.push(item['$text'].substr(folder.length))
+})
 
 xml
   .on('end', function () {
-    zip(filesArray);
-  });
+    zip(filesArray)
+  })
 
 function zip(files) {
-  console.log(files);
-  var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'));
+  console.log(files)
+  var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
   s3Zip
    .archive({ region: region, bucket: bucket }, folder, files)
-   .pipe(output);
-};
+   .pipe(output)
+}
 ```
 
 
