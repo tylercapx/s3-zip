@@ -41,7 +41,11 @@ s3Zip.archiveStream = function (stream, filesS3, filesZip) {
        fname = file.path
      }
      console.log('append to zip', fname)
-     archive.append(file.data, { name: fname })
+     if (file.data.length === 0) {
+       archive.append('', { name: fname })
+     } else {
+       archive.append(file.data, { name: fname })
+     }
    })
    .on('end', function () {
      console.log('end -> finalize')
