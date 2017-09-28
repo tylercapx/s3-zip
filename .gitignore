@@ -3,3 +3,4 @@ coverage/*
 node_modules/*
 test/test.zip
 test/test_alt.zip
+.idea/

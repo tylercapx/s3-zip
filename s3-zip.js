@@ -13,7 +13,7 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
     })
     .createKeyStream(folder, filesS3)
 
-  var fileStream = s3Files.createFileStream(keyStream)
+  var fileStream = s3Files.createFileStream(keyStream, opts.preserveFolderStructure)
   var archive = self.archiveStream(fileStream, filesS3, filesZip)
   return archive
 }

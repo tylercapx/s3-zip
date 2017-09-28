@@ -88,7 +88,7 @@ function zip(files) {
   console.log(files)
   var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
   s3Zip
-   .archive({ region: region, bucket: bucket }, folder, files)
+   .archive({ region: region, bucket: bucket, preserveFolderStructure: true }, folder, files)
    .pipe(output)
 }
 ```

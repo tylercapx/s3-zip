@@ -1,6 +1,6 @@
 {
   "name": "s3-zip",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Download selected files from an Amazon S3 bucket as a zip file.",
   "main": "s3-zip.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "archiver": "^1.2.0",
     "readable-stream": "^2.1.5",
-    "s3-files": "0.0.15"
+    "s3-files": "0.0.16"
   },
   "devDependencies": {
     "concat-stream": "^1.5.2",
