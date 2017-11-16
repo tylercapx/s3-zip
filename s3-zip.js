@@ -14,10 +14,11 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
     }
   } else {
     connectionConfig = {
-      region: opts.region,
-      bucket: opts.bucket
+      region: opts.region
     }
   }
+
+  connectionConfig.bucket = opts.bucket
 
   self.client = s3Files.connect(connectionConfig)
 
