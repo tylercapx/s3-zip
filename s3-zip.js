@@ -8,7 +8,7 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
   var self = this
   var connectionConfig
 
-  if('s3' in opts) {
+  if ('s3' in opts) {
     connectionConfig = {
       s3: opts.s3
     }
