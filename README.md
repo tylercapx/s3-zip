@@ -60,7 +60,7 @@ var s3Client = new aws.S3({
 })
 
 s3Zip
-  .archive({ s3: s3Client, bucket: 'boom' }, folder, [file1, file2])
+  .archive({ s3: s3Client, bucket: bucket }, folder, [file1, file2])
   .pipe(output)
 ```
 
@@ -109,6 +109,43 @@ function zip(files) {
 }
 ```
 
+### Tar format support
+
+```javascript
+s3Zip
+  .setFormat('tar')
+  .archive({ region: region, bucket: bucket }, folder, [file1, file2])
+  .pipe(output)
+```
+
+### Archiver options
+
+We use [archiver][archiver-url] to create archives. To pass your options to it, use `setArchiverOptions` method:
+
+```javascript
+s3Zip
+  .setFormat('tar')
+  .setArchiverOptions({ gzip: true })
+  .archive({ region: region, bucket: bucket }, folder, [file1, file2])
+```
+
+### Organize your archive with custom paths and permissions
+
+You can pass an array of objects with type [EntryData][entrydata-url] to organize your archive.
+
+```javascript
+var files = ['flower.jpg', 'road.jpg'];
+var archiveFiles = [{ name: 'newFolder/flower.jpg' }, { name: 'road.jpg', mode: 0755 }];
+s3Zip.archive({ region: region, bucket: bucket }, folder, files, archiveFiles)
+```
+
+### Debug mode
+
+Enable debug mode to see the logs:
+
+```javascript
+s3Zip.archive({ region: region, bucket: bucket, debug: true }, folder, files)
+```
 
 ## Testing
 
@@ -134,3 +171,5 @@ npm run coverage
 [travis-url]: https://travis-ci.org/orangewise/s3-zip
 [coveralls-badge]: https://coveralls.io/repos/github/orangewise/s3-zip/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/orangewise/s3-zip?branch=master
+[archiver-url]: https://www.npmjs.com/package/archiver
+[entrydata-url]: https://archiverjs.com/docs/global.html#EntryData
