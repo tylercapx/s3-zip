@@ -7,6 +7,7 @@ var Stream = require('stream')
 var concat = require('concat-stream')
 var yauzl = require('yauzl')
 var join = require('path').join
+var tar = require('tar')
 
 var fileStream = function (file, forceError) {
   var rs = new Stream()
@@ -33,6 +34,7 @@ var fileStream = function (file, forceError) {
 
 var file1 = '/fixtures/file.txt'
 var file1Alt = 'FILE_ALT.TXT'
+var file1DataEntry = { name: file1Alt, mode: parseInt('0600', 8) }
 // Stub: var fileStream = s3Files.createFileStream(keyStream);
 var sinon = require('sinon')
 var proxyquire = require('proxyquire')
@@ -75,4 +77,25 @@ t.test('test archive with alternate zip archive names', function (child) {
     )
   child.type(archive, 'object')
   child.end()
+})
+
+t.test('test a tar archive with EntryData object', function (child) {
+  var outputPath = join(__dirname, '/test_entrydata.tar')
+  var output = fs.createWriteStream(outputPath)
+  var archive = s3Zip
+    .setFormat('tar')
+    .archiveStream(fileStream(file1), [file1], [file1DataEntry])
+    .pipe(output)
+
+  archive.on('close', function () {
+    fs.createReadStream(outputPath)
+      .pipe(tar.list())
+      .on('entry', function (entry) {
+        child.same(entry.path, file1Alt)
+        child.same(entry.mode, parseInt('0600', 8))
+      })
+      .on('end', function () {
+        child.end()
+      })
+  })
 })
