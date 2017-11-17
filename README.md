@@ -135,7 +135,12 @@ You can pass an array of objects with type [EntryData][entrydata-url] to organiz
 
 ```javascript
 var files = ['flower.jpg', 'road.jpg'];
-var archiveFiles = [{ name: 'newFolder/flower.jpg' }, { name: 'road.jpg', mode: 0755 }];
+var archiveFiles = [
+  { name: 'newFolder/flower.jpg' },
+
+  /* _rw_______ */
+  { name: 'road.jpg', mode: parseInt('0600', 8)  }
+];
 s3Zip.archive({ region: region, bucket: bucket }, folder, files, archiveFiles)
 ```
 
