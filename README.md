@@ -54,9 +54,9 @@ You can also pass a custom S3 client. For example if you want to zip files from 
 var aws = require('aws-sdk')
 
 var s3Client = new aws.S3({
-    signatureVersion: 'v4',
-    s3ForcePathStyle: 'true',
-    endpoint: 'http://localhost:9000',
+  signatureVersion: 'v4',
+  s3ForcePathStyle: 'true',
+  endpoint: 'http://localhost:9000',
 })
 
 s3Zip
