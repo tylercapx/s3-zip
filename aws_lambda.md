@@ -4,9 +4,6 @@
 
 
 ```javascript
-
-console.log('Loading...')
-
 var AWS = require('aws-sdk')
 var s3Zip = require('s3-zip')
 
