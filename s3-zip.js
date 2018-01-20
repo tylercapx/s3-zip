@@ -8,6 +8,8 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
   var self = this
   var connectionConfig
 
+  this.folder = folder
+
   self.debug = opts.debug || false
 
   if ('s3' in opts) {
@@ -26,13 +28,15 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
 
   var keyStream = self.client.createKeyStream(folder, filesS3)
 
-  var fileStream = s3Files.createFileStream(keyStream, opts.preserveFolderStructure)
+  var preserveFolderStructure = opts.preserveFolderStructure === true || filesZip
+  var fileStream = s3Files.createFileStream(keyStream, preserveFolderStructure)
   var archive = self.archiveStream(fileStream, filesS3, filesZip)
   return archive
 }
 
 s3Zip.archiveStream = function (stream, filesS3, filesZip) {
   var self = this
+  var folder = this.folder || ''
   var archive = archiver(this.format || 'zip', this.archiverOpts || {})
   archive.on('error', function (err) {
     self.debug && console.log('archive error', err)
@@ -47,7 +51,7 @@ s3Zip.archiveStream = function (stream, filesS3, filesZip) {
      var fname
      if (filesZip) {
        // Place files_s3[i] into the archive as files_zip[i]
-       var i = filesS3.indexOf(file.path)
+       var i = filesS3.indexOf(file.path.startsWith(folder) ? file.path.substr(folder.length) : file.path)
        fname = (i >= 0 && i < filesZip.length) ? filesZip[i] : file.path
      } else {
        // Just use the S3 file name
