@@ -44,14 +44,14 @@ s3Zip = proxyquire('../s3-zip.js', {
 })
 
 t.test('test archiveStream and zip file with alternate file name in zip archive', function (child) {
-  var output = fs.createWriteStream(join(__dirname, '/test_alt.zip'))
+  var output = fs.createWriteStream(join(__dirname, '/test-alt.zip'))
   var s = fileStream(file1)
   var archive = s3Zip
     .archiveStream(s, [file1], [file1Alt])
     .pipe(output)
   archive.on('close', function () {
     console.log('+++++++++++')
-    yauzl.open(join(__dirname, '/test_alt.zip'), function (err, zip) {
+    yauzl.open(join(__dirname, '/test-alt.zip'), function (err, zip) {
       if (err) console.log('err', err)
       zip.on('entry', function (entry) {
         // console.log(entry);
@@ -80,7 +80,7 @@ t.test('test archive with alternate zip archive names', function (child) {
 })
 
 t.test('test a tar archive with EntryData object', function (child) {
-  var outputPath = join(__dirname, '/test_entrydata.tar')
+  var outputPath = join(__dirname, '/test-entrydata.tar')
   var output = fs.createWriteStream(outputPath)
   var archive = s3Zip
     .setFormat('tar')

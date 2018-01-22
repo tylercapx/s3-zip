@@ -49,7 +49,7 @@ s3Zip = proxyquire('../s3-zip.js', {
 })
 
 t.test('test archive with matching alternate zip archive names but unique keys', function (child) {
-  var outputPath = join(__dirname, '/test_unique.zip')
+  var outputPath = join(__dirname, '/test-unique.zip')
   var output = fs.createWriteStream(outputPath)
 
   var archive = s3Zip
