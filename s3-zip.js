@@ -31,6 +31,10 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
   var preserveFolderStructure = opts.preserveFolderStructure === true || filesZip
   var fileStream = s3Files.createFileStream(keyStream, preserveFolderStructure)
   var archive = self.archiveStream(fileStream, filesS3, filesZip)
+  fileStream.on('error', function (err) {
+    archive.emit('error', err)
+  })
+
   return archive
 }
 
@@ -40,7 +44,6 @@ s3Zip.archiveStream = function (stream, filesS3, filesZip) {
   var archive = archiver(this.format || 'zip', this.archiverOpts || {})
   archive.on('error', function (err) {
     self.debug && console.log('archive error', err)
-    throw err
   })
   stream
    .on('data', function (file) {
@@ -68,6 +71,9 @@ s3Zip.archiveStream = function (stream, filesS3, filesZip) {
    .on('end', function () {
      self.debug && console.log('end -> finalize')
      archive.finalize()
+   })
+   .on('error', function (err) {
+     archive.emit('error', err)
    })
 
   return archive
