@@ -31,9 +31,6 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
   var preserveFolderStructure = opts.preserveFolderStructure === true || filesZip
   var fileStream = s3Files.createFileStream(keyStream, preserveFolderStructure)
   var archive = self.archiveStream(fileStream, filesS3, filesZip)
-  fileStream.on('error', function (err) {
-    archive.emit('error', err)
-  })
 
   return archive
 }
