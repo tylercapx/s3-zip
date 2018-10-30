@@ -28,19 +28,19 @@ Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using thi
 
 ```javascript
 
-var fs = require('fs')
-var join = require('path').join
-var s3Zip = require('s3-zip')
+const fs = require('fs')
+const join = require('path').join
+const s3Zip = require('s3-zip')
 
-var region = 'bucket-region'
-var bucket = 'name-of-s3-bucket'
-var folder = 'name-of-bucket-folder/'
-var file1 = 'Image A.png'
-var file2 = 'Image B.png'
-var file3 = 'Image C.png'
-var file4 = 'Image D.png'
+const region = 'bucket-region'
+const bucket = 'name-of-s3-bucket'
+const folder = 'name-of-bucket-folder/'
+const file1 = 'Image A.png'
+const file2 = 'Image B.png'
+const file3 = 'Image C.png'
+const file4 = 'Image D.png'
 
-var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
+const output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
 
 s3Zip
   .archive({ region: region, bucket: bucket}, folder, [file1, file2, file3, file4])
@@ -51,9 +51,9 @@ s3Zip
 You can also pass a custom S3 client. For example if you want to zip files from a S3 compatible storage:
 
 ```javascript
-var aws = require('aws-sdk')
+const aws = require('aws-sdk')
 
-var s3Client = new aws.S3({
+const s3Client = new aws.S3({
   signatureVersion: 'v4',
   s3ForcePathStyle: 'true',
   endpoint: 'http://localhost:9000',
@@ -72,24 +72,24 @@ Example of s3-zip in combination with [AWS Lambda](aws_lambda.md).
 ### Zip a whole bucket folder
 
 ```javascript
-var fs = require('fs')
-var join = require('path').join
-var AWS = require('aws-sdk')
-var s3Zip = require('s3-zip')
-var XmlStream = require('xml-stream')
+const fs = require('fs')
+const join = require('path').join
+const AWS = require('aws-sdk')
+const s3Zip = require('s3-zip')
+const XmlStream = require('xml-stream')
 
-var region = 'bucket-region'
-var bucket = 'name-of-s3-bucket'
-var folder = 'name-of-bucket-folder/'
-var s3 = new AWS.S3({ region: region })
-var params = {
+const region = 'bucket-region'
+const bucket = 'name-of-s3-bucket'
+const folder = 'name-of-bucket-folder/'
+const s3 = new AWS.S3({ region: region })
+const params = {
   Bucket: bucket,
   Prefix: folder
 }
 
-var filesArray = []
-var files = s3.listObjects(params).createReadStream()
-var xml = new XmlStream(files)
+const filesArray = []
+const files = s3.listObjects(params).createReadStream()
+const xml = new XmlStream(files)
 xml.collect('Key')
 xml.on('endElement: Key', function(item) {
   filesArray.push(item['$text'].substr(folder.length))
@@ -102,7 +102,7 @@ xml
 
 function zip(files) {
   console.log(files)
-  var output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
+  const output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
   s3Zip
    .archive({ region: region, bucket: bucket, preserveFolderStructure: true }, folder, files)
    .pipe(output)
@@ -134,8 +134,8 @@ s3Zip
 You can pass an array of objects with type [EntryData][entrydata-url] to organize your archive.
 
 ```javascript
-var files = ['flower.jpg', 'road.jpg'];
-var archiveFiles = [
+const files = ['flower.jpg', 'road.jpg'];
+const archiveFiles = [
   { name: 'newFolder/flower.jpg' },
 
   /* _rw_______ */
