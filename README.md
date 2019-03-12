@@ -134,7 +134,7 @@ s3Zip
 You can pass an array of objects with type [EntryData][entrydata-url] to organize your archive.
 
 ```javascript
-const files = ['flower.jpg', 'road.jpg'];
+const files = ['flower.jpg', 'road.jpg']
 const archiveFiles = [
   { name: 'newFolder/flower.jpg' },
 
@@ -149,11 +149,13 @@ s3Zip.archive({ region: region, bucket: bucket }, folder, files, archiveFiles)
 `s3-zip` works with any framework which leverages on NodeJS Streams including ExpressJS.
 
 ```javascript
-const s3Zip = require('s3-zip');
+const s3Zip = require('s3-zip')
 
 app.get('/download', (req, res) => {
-    s3Zip.archive({ region: region, bucket: bucket }, '', 'abc.jpg').pipe(res);
-});
+  s3Zip
+    .archive({ region: region, bucket: bucket }, '', 'abc.jpg')
+    .pipe(res)
+})
 ```
 Above should stream out the file in the response of the request.
 
