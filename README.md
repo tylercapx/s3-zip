@@ -144,6 +144,19 @@ const archiveFiles = [
 s3Zip.archive({ region: region, bucket: bucket }, folder, files, archiveFiles)
 ```
 
+### Using with ExpressJS
+
+`s3-zip` works with any framework which leverages on NodeJS Streams including ExpressJS.
+
+```javascript
+const s3Zip = require('s3-zip');
+
+app.get('/download', (req, res) => {
+    s3Zip.archive({ region: region, bucket: bucket }, '', 'abc.jpg').pipe(res);
+});
+```
+Above should stream out the file in the response of the request.
+
 ### Debug mode
 
 Enable debug mode to see the logs:
