@@ -27,7 +27,7 @@
   "dependencies": {
     "archiver": "^3.0.0",
     "readable-stream": "^3.0.6",
-    "s3-files": "^1.0.2"
+    "s3-files": "^2.0.0"
   },
   "devDependencies": {
     "concat-stream": "^1.5.2",
