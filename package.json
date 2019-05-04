@@ -26,16 +26,15 @@
   "homepage": "https://github.com/orangewise/s3-zip#readme",
   "dependencies": {
     "archiver": "^3.0.0",
-    "readable-stream": "^3.0.6",
     "s3-files": "^2.0.0"
   },
   "devDependencies": {
-    "concat-stream": "^1.5.2",
+    "concat-stream": "^2.0.0",
     "proxyquire": "^2.1.0",
     "sinon": "^7.2.7",
     "standard": "^12.0.1",
     "stream-array": "^1.1.2",
-    "tap": "^12.0.1",
+    "tap": "^13.1.2",
     "tar": "^4.0.2",
     "yauzl": "^2.9.1"
   }
