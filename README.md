@@ -123,7 +123,8 @@ s3Zip
 ```javascript
 s3Zip
   .setRegisterFormatOptions('zip-encrypted', require("archiver-zip-encrypted"))
-  .setArchiverOptions('zip-encrypted', {zlib: {level: 8}, encryptionMethod: 'aes256', password: '123'})
+  .setFormat('zip-encryptable')
+  .setArchiverOptions({zlib: {level: 8}, encryptionMethod: 'aes256', password: '123'})
   .archive({ region: region, bucket: bucket }, folder, [file1, file2])
   .pipe(output)
 ```
