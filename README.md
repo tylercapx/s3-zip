@@ -118,7 +118,7 @@ s3Zip
   .pipe(output)
 ```
 
-### zip a file with protected password
+### Zip a file with protected password
 
 ```javascript
 s3Zip
