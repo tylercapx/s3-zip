@@ -38,6 +38,9 @@ s3Zip.archive = function (opts, folder, filesS3, filesZip) {
 s3Zip.archiveStream = function (stream, filesS3, filesZip) {
   const self = this
   const folder = this.folder || ''
+  if (this.registerFormat) {
+    archiver.registerFormat(this.registerFormat, this.formatModule)
+  }
   const archive = archiver(this.format || 'zip', this.archiverOpts || {})
   archive.on('error', function (err) {
     self.debug && console.log('archive error', err)
@@ -83,5 +86,11 @@ s3Zip.setFormat = function (format) {
 
 s3Zip.setArchiverOptions = function (archiverOpts) {
   this.archiverOpts = archiverOpts
+  return this
+}
+
+s3Zip.setRegisterFormatOptions = function (registerFormat, formatModule) {
+  this.registerFormat = registerFormat
+  this.formatModule = formatModule
   return this
 }

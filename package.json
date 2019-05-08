@@ -29,6 +29,8 @@
     "s3-files": "^2.0.0"
   },
   "devDependencies": {
+    "archiver-zip-encryptable": "^1.0.2",
+    "child_process": "^1.0.2",
     "concat-stream": "^2.0.0",
     "proxyquire": "^2.1.0",
     "sinon": "^7.2.7",
