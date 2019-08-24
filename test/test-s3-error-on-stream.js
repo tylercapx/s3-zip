@@ -35,7 +35,7 @@ t.test('test if error on filestream with archiveStream', function (child) {
 t.test('test if error on filestream with archive', function (child) {
   var stream = fileStream('./fixtures/file.txt')
   s3Zip = proxyquire('../s3-zip.js', {
-    's3-files': { 'createFileStream': sinon.stub().returns(stream) }
+    's3-files': { createFileStream: sinon.stub().returns(stream) }
   })
   var files = ['foo.png']
   s3Zip.archive({ region: 'region', bucket: 'bucket' }, 'folder', files)

@@ -40,7 +40,7 @@ var sinon = require('sinon')
 var proxyquire = require('proxyquire')
 var s3Stub = fileStream(file1)
 s3Zip = proxyquire('../s3-zip.js', {
-  's3-files': { 'createFileStream': sinon.stub().returns(s3Stub) }
+  's3-files': { createFileStream: sinon.stub().returns(s3Stub) }
 })
 
 t.test('test archiveStream and zip file with alternate file name in zip archive', function (child) {
