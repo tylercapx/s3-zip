@@ -8,7 +8,6 @@ var concat = require('concat-stream')
 var join = require('path').join
 var streamify = require('stream-array')
 var tar = require('tar')
-var yauzl = require('yauzl')
 
 var fileStreamForFiles = function (files, preserveFolderPath) {
   var rs = new Stream()
@@ -82,37 +81,4 @@ t.test('test archive with alternate names for one file listed many times', funct
 
   child.type(archive, 'object')
   child.end()
-})
-
-filesRead = []
-
-t.test('test archive and zip file with alternate names for one file listed many times', function (child) {
-  var outputPath = join(__dirname, '/test-same_file_alt_name.zip')
-  var output = fs.createWriteStream(outputPath)
-  var archive = s3Zip
-    .archive(
-      { region: 'region', bucket: 'bucket' },
-      '',
-      inputFiles,
-      outputFiles
-    )
-    .pipe(output)
-
-  archive.on('close', function () {
-    yauzl.open(outputPath, function (err, zip) {
-      if (err) console.log('err', err)
-      zip.on('entry', function (entry) {
-        filesRead.push(entry.fileName)
-      })
-
-      zip.on('close', function () {
-        console.log('-----------------------FILES READ - ', filesRead)
-        console.log('-----------------------OUTPUT FILES - ', outputFiles)
-        child.same(filesRead, outputFiles)
-        child.end()
-      })
-    })
-  })
-
-  child.type(archive, 'object')
 })
