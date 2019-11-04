@@ -56,6 +56,7 @@ s3Zip.archiveStream = function (stream, filesS3, filesZip) {
         // Place files_s3[i] into the archive as files_zip[i]
         const i = filesS3.indexOf(file.path.startsWith(folder) ? file.path.substr(folder.length) : file.path)
         fname = (i >= 0 && i < filesZip.length) ? filesZip[i] : file.path
+        filesS3[i] = ''
       } else {
         // Just use the S3 file name
         fname = file.path
