@@ -46,8 +46,6 @@ var outputFiles = [
 ]
 var filesRead = []
 
-filesRead = []
-
 t.test('test a tar archive with alternate names for one file listed many times', function (child) {
   var outputPath = join(__dirname, '/test-same_file_alt_name.tar')
   var output = fs.createWriteStream(outputPath)
