@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/orangewise/s3-zip#readme",
   "dependencies": {
-    "archiver": "^3.1.1",
+    "archiver": "^5.2.0",
     "s3-files": "^2.0.0"
   },
   "devDependencies": {
