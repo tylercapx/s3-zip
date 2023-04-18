@@ -24,7 +24,7 @@ Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using thi
 ```javascript
 const fs = require('fs');
 const join = require('path').join;
-const s3Zip = require('s3-zip');
+const s3Zip = require('@tylercapx/s3-zip');
 
 const region = 'bucket-region';
 const bucket = 'name-of-s3-bucket';
@@ -33,10 +33,17 @@ const file1 = 'Image A.png';
 const file2 = 'Image B.png';
 const file3 = 'Image C.png';
 const file4 = 'Image D.png';
+const fileNameMap = {
+  [file1]: 'New Image Name A.png';
+  [file2]: 'New Image Name B.png';
+  [file3]: 'New Image Name C.png';
+  [file4]: 'New Image Name D.png';
+}
+
 
 const output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'));
 
-s3Zip.archive({ region: region, bucket: bucket }, folder, [file1, file2, file3, file4]).pipe(output);
+s3Zip.archive({ region: region, bucket: bucket }, folder, [file1, file2, file3, file4], null, fileNameMap).pipe(output);
 ```
 
 You can also pass a custom S3 client. For example if you want to zip files from a S3 compatible storage:
@@ -50,7 +57,7 @@ const s3Client = new aws.S3({
     endpoint: 'http://localhost:9000',
 });
 
-s3Zip.archive({ s3: s3Client, bucket: bucket }, folder, [file1, file2]).pipe(output);
+s3Zip.archive({ s3: s3Client, bucket: bucket }, folder, [file1, file2], null, fileNameMap).pipe(output);
 ```
 
 ### Zip files with AWS Lambda
@@ -63,7 +70,7 @@ Example of s3-zip in combination with [AWS Lambda](aws_lambda.md).
 const fs = require('fs');
 const join = require('path').join;
 const AWS = require('aws-sdk');
-const s3Zip = require('s3-zip');
+const s3Zip = require('@tylercapx/s3-zip');
 const XmlStream = require('xml-stream');
 
 const region = 'bucket-region';
