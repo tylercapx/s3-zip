@@ -1,4 +1,4 @@
-const s3Files = require('@tylercapx/s3-files');
+const s3Files = require('s3-files');
 const archiver = require('archiver');
 
 const s3Zip = {};

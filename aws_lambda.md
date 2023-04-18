@@ -4,7 +4,7 @@
 
 ```javascript
 const AWS = require('aws-sdk');
-const s3Zip = require('s3-zip');
+const s3Zip = require('@tylercapx/s3-zip');
 
 exports.handler = function (event, context) {
     console.log('event', event);
