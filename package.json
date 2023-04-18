@@ -1,6 +1,6 @@
 {
   "name": "@tylercapx/s3-zip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Forked from s3-zip. Download selected files from an Amazon S3 bucket as a zip file. Added ability to rename s3 files if given an object that maps s3 file names to its new name.",
   "main": "s3-zip.js",
   "scripts": {
