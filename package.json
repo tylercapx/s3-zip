@@ -1,7 +1,7 @@
 {
-  "name": "s3-zip",
-  "version": "3.2.1",
-  "description": "Download selected files from an Amazon S3 bucket as a zip file.",
+  "name": "@tylercapx/s3-zip",
+  "version": "1.0",
+  "description": "Forked from s3-zip. Download selected files from an Amazon S3 bucket as a zip file. Added ability to rename s3 files if given an object that maps s3 file names to its new name.",
   "main": "s3-zip.js",
   "scripts": {
     "test": "standard && tap --cov test/test*.js",
@@ -9,21 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/orangewise/s3-zip.git"
+    "url": "https://github.com/tylercapx/s3-zip.git"
   },
   "keywords": [
     "amazon",
     "aws",
     "S3",
     "zip",
-    "files"
+    "files",
+    "rename s3 files"
   ],
-  "author": "Ronald Luitwieler",
+  "author": "Tyler Nguyen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/orangewise/s3-zip/issues"
+    "url": "https://github.com/tylercapx/s3-zip/issues"
   },
-  "homepage": "https://github.com/orangewise/s3-zip#readme",
+  "homepage": "https://github.com/tylercapx/s3-zip#readme",
   "dependencies": {
     "archiver": "^5.2.0",
     "s3-files": "^2.0.3"
